@@ -1,10 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { useReducer } from "react/cjs/react.production.min";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
+
+  const [datos, setDatos] = useState({});
+
+  const sendUserInfo = async () => {
+    if (datos.email != null && datos.password.trim() != "") {
+      const response = await fetch(
+        "https://3001-joselike-jwtauthenticat-4ig8cornrlh.ws-eu43.gitpod.io/api/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(datos),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } else {
+      return alert("Falta informacion");
+    }
+  };
 
   return (
     <div className="container bg-light mt-5 mb-3 p-3 border border-warning rounded">
@@ -17,6 +37,7 @@ export const Login = () => {
             class="form-control"
             placeholder="Enter email"
             name="email"
+            onChange={(e) => setDatos({ ...datos, email: e.target.value })}
           />
         </div>
       </div>
@@ -29,11 +50,16 @@ export const Login = () => {
             class="form-control"
             placeholder="Enter Password"
             name="password"
+            onChange={(e) => setDatos({ ...datos, password: e.target.value })}
           />
         </div>
       </div>
       <div className="row justify-content-center">
-        <button type="button" class="col-3 btn btn-outline-success">
+        <button
+          type="button"
+          class="col-3 btn btn-outline-success"
+          onClick={() => sendUserInfo()}
+        >
           Success
         </button>
       </div>

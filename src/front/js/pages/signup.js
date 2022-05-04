@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { useReducer } from "react/cjs/react.production.min";
 
 export const Signup = () => {
   const { store, actions } = useContext(Context);
@@ -9,16 +10,20 @@ export const Signup = () => {
   const [datos, setDatos] = useState({});
 
   const sendNewUser = async () => {
-    const response = await fetch(
-      "https://3000-4geeksacade-reactflaskh-vb52hxud9lh.ws-eu43.gitpod.io/api/signup",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datos),
-      }
-    );
-    const data = await response.json();
-    console.log(data);
+    if (datos.email != null && datos.password.trim() != "") {
+      const response = await fetch(
+        "https://3001-joselike-jwtauthenticat-4ig8cornrlh.ws-eu43.gitpod.io/api/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(datos),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } else {
+      return alert("Falta informacion");
+    }
   };
 
   return (
