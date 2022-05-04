@@ -27,8 +27,8 @@ def login_user():
     if body_email and body_password:
         user = User.query.filter_by(email=body_email).filter_by(password=body_password).first()
         if user:
-            user.is_active=True
-            return jsonify({"logged":True, "user":user.serialize()}), 200
+            access_token = create_access_token(identity=user.id)
+            return jsonify({"logged":True, "user":user.serialize(), "token":access_token}), 200
         else:
             return jsonify({"logged":False, "msg":"error"}), 400
     else:

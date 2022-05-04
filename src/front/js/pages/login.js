@@ -20,6 +20,7 @@ export const Login = () => {
         }
       );
       const data = await response.json();
+      localStorage.setItem("jwt-token", data.token);
       console.log(data);
     } else {
       return alert("Falta informacion");
