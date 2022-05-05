@@ -9,14 +9,14 @@ export const Home = () => {
   useEffect(() => {
     getInfoUser();
   }, []);
-
+  const token = localStorage.getItem("token");
   const getInfoUser = async () => {
     const response = await fetch(
-      "https://3001-joselike-jwtauthenticat-ns5kb0bdnn0.ws-eu43.gitpod.io/api/private",
+      "https://3001-joselike-jwtauthenticat-ur13tbcalzn.ws-eu44.gitpod.io/api/private",
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
+          Authorization: "Bearer " + token,
         },
       }
     );

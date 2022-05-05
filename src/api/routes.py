@@ -38,7 +38,7 @@ def login_user():
 @api.route('/private', methods=["GET"])
 @jwt_required()
 def get_info():
-    current_user_id = get_jwt_identify()
+    current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
     if user:
         return jsonify({"Pass":True, "msg":"usuario con token valido"}), 200

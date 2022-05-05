@@ -12,7 +12,7 @@ export const Signup = () => {
   const sendNewUser = async () => {
     if (datos.email != null && datos.password.trim() != "") {
       const response = await fetch(
-        "https://3001-joselike-jwtauthenticat-ns5kb0bdnn0.ws-eu43.gitpod.io/api/register",
+        "https://3001-joselike-jwtauthenticat-ur13tbcalzn.ws-eu44.gitpod.io/api/register",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

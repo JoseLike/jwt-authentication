@@ -27,15 +27,14 @@ export const Navbar = () => {
               Login
             </button>
           </Link>
-          <Link to={"/create-user"}>
-            <button
-              className="btn btn-danger login-user"
-              type="button"
-              id="NavButtonLogin"
-            >
-              LogOut
-            </button>
-          </Link>
+          <button
+            className="btn btn-danger login-user"
+            type="button"
+            id="NavButtonLogin"
+            onClick={localStorage.removeItem("token")}
+          >
+            LogOut
+          </button>
         </div>
       </div>
     </nav>
