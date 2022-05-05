@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { useReducer } from "react/cjs/react.production.min";
@@ -12,7 +13,7 @@ export const Signup = () => {
   const sendNewUser = async () => {
     if (datos.email != null && datos.password.trim() != "") {
       const response = await fetch(
-        "https://3001-joselike-jwtauthenticat-ur13tbcalzn.ws-eu44.gitpod.io/api/register",
+        "https://3001-joselike-jwtauthenticat-owduz60wz88.ws-eu44.gitpod.io/api/register",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -55,13 +56,15 @@ export const Signup = () => {
         </div>
       </div>
       <div className="row justify-content-center">
-        <button
-          type="button"
-          class="col-3 btn btn-outline-success"
-          onClick={() => sendNewUser()}
-        >
-          Success
-        </button>
+        <Link to={"/login"}>
+          <button
+            type="button"
+            class="col-3 btn btn-outline-success"
+            onClick={() => sendNewUser()}
+          >
+            Success
+          </button>
+        </Link>
       </div>
     </div>
   );

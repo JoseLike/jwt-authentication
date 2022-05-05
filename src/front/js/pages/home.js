@@ -12,7 +12,7 @@ export const Home = () => {
   const token = localStorage.getItem("token");
   const getInfoUser = async () => {
     const response = await fetch(
-      "https://3001-joselike-jwtauthenticat-ur13tbcalzn.ws-eu44.gitpod.io/api/private",
+      "https://3001-joselike-jwtauthenticat-owduz60wz88.ws-eu44.gitpod.io/api/private",
       {
         headers: {
           "Content-Type": "application/json",
