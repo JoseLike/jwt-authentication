@@ -4,21 +4,21 @@ const getState = ({ getStore, getActions, setStore }) => {
       logged: null,
     },
     actions: {
-      getInfoUser: async () => {
+      getInfoLogged: async () => {
         const response = await fetch(
-          "https://3001-joselike-jwtauthenticat-9fslzgg5wgp.ws-eu44.gitpod.io/api/private",
+          "https://3001-joselike-jwtauthenticat-pwqwb0bbvnz.ws-eu44.gitpod.io/api/log",
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: "Bearer " + token,
+              Authorization: "Bearer " + localStorage.getItem("token"),
             },
           }
         );
         const data = await response.json();
-        if (data.pass == True) {
-          setStore(logged == true) || false;
+        if (data.logged != true) {
+          setStore({ logged: false });
         } else {
-          setStore(logged == false);
+          setStore({ logged: true });
         }
       },
     },
