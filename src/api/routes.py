@@ -41,16 +41,6 @@ def get_info():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
     if user:
-        return jsonify({"Pass":True, "msg":"usuario con token valido"}), 200
+        return jsonify({"logged":True}), 200
     else:
-        return jsonify({"Pass":False,"msg":"usuario sin token valido, registrese o haga login"}), 400
-
-@api.route('/log', methods=["GET"])
-@jwt_required()
-def get_logged():
-    current_user_id = get_jwt_identity()
-    user = User.query.get(current_user_id)
-    if user:
-        return jsonify({"logged":True, "msg":"usuario con token valido"}), 200
-    else:
-        return jsonify({"logged":False,"msg":"usuario sin token valido"}), 400
+        return jsonify({"logged":False}), 400
