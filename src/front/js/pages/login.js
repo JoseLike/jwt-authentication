@@ -1,10 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
-import { useReducer } from "react/cjs/react.production.min";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const Login = () => {
   const { store, actions } = useContext(Context);
@@ -14,7 +12,7 @@ export const Login = () => {
   const sendUserInfo = async () => {
     if (datos.email != null && datos.password.trim() != "") {
       const response = await fetch(
-        "https://3001-joselike-jwtauthenticat-c3ejae43ia9.ws-eu44.gitpod.io/api/login",
+        "https://3001-joselike-jwtauthenticat-mkaya0eu3my.ws-eu44.gitpod.io/api/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -23,6 +21,9 @@ export const Login = () => {
       );
       const data = await response.json();
       localStorage.setItem("token", data.token);
+      if (data.logged == true) {
+        actions.logTrue();
+      }
       console.log(data);
       navigate.push("/private");
     } else {

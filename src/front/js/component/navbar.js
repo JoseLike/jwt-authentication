@@ -51,6 +51,7 @@ export const Navbar = () => {
                     id="NavButtonLogin"
                     onClick={() => {
                       localStorage.removeItem("token");
+                      actions.logFalse();
                     }}
                   >
                     LogOut
